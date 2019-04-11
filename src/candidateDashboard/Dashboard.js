@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Jobs from './Jobs'
 
 class Dashboard extends Component {
     // componentDidMount() {
@@ -15,9 +16,6 @@ class Dashboard extends Component {
     //         .catch(error => console.log(error));
     // }
 
-    
-
-
     render() {
         const jobs = [
             {"id":"110101", "title": "Software Engineer I", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
@@ -28,26 +26,7 @@ class Dashboard extends Component {
 
         return (
             <div className="candidate-dashboard">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Job 1: SDE</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Apply</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Job 2: Professor</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary">Apply</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <Jobs jobs={jobs} />
             </div>
         );
     }
