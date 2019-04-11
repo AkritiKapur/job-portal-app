@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './Dashboard.css'
 
 class JobCard extends Component {
     render() {
@@ -11,7 +12,7 @@ class JobCard extends Component {
         const desc = description.length > MAXLEN ? description.substring(0, MAXLEN) +'..': description
 
         return (
-            <div class="col-sm-4">
+            <div class="col-sm-4 d-flex align-items-stretch job-card-holder">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{id}: {title}</h5>
