@@ -8,16 +8,11 @@ import { Provider } from 'react-redux'
 import configureStore from './store';
 import './index.css';
 import App from './App';
-import Dashboard from './candidateDashboard/Dashboard';
-import Header from './header/header'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
  <Provider store={configureStore()}>
-  <Header />
-  <div className="container-fluid">
-    <Dashboard />
-  </div>
+    <App />
  </Provider>,
  document.getElementById('root')
 );
