@@ -8,30 +8,38 @@ class SignupHolder extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-          key: 'signup',
+          key: 'login',
         };
     }
 
     render() {
         return (
-            <div class="row">
-            <div class="col-md-6 sign-up-container">
+            <div className="row">
+            <div className="col-md-4 sign-up-container container-fluid">
                 <Tabs
                     id="controlled-tab-home"
                     activeKey={this.state.key}
                     onSelect={key => this.setState({ key })}
                 >
-                    <Tab eventKey="signup" title="Sign Up">
-                        <input className="form-control sign-up-input" type="text" placeholder="Username" aria-label="Username" />
-                        <input className="form-control sign-up-input" type="password" placeholder="Password" aria-label="Password" />
-                    </Tab>
                     <Tab eventKey="login" title="Login">
-                        <input className="form-control sign-up-input" type="text" placeholder="Username" aria-label="Username" />
-                        <input className="form-control sign-up-input" type="password" placeholder="Password" aria-label="Password" />
+                            <div className="row">
+                                <div className="col-md-10 sign-up-form-container">
+                                    <input className="form-control sign-up-input" type="text" placeholder="Username" aria-label="Username" />
+                                    <input className="form-control sign-up-input" type="password" placeholder="Password" aria-label="Password" />
+                                </div>
+                            </div>
+                    </Tab>
+                    <Tab eventKey="signup" title="Sign Up">
+                        <div className="row">
+                                <div className="col-md-10 sign-up-form-container">
+                                    <input className="form-control sign-up-input" type="text" placeholder="Username" aria-label="Username" />
+                                    <input className="form-control sign-up-input" type="password" placeholder="Password" aria-label="Password" />
+                                </div>
+                            </div>
                     </Tab>
                 </Tabs>
+
             </div>
-                
             </div>
         )
         

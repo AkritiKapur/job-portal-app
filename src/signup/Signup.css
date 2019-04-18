@@ -3,5 +3,18 @@
     margin-right: 30%;
     margin-top: 10%;
     box-sizing: content-box;
-    border: blue;
+    box-shadow: 0px 10px 20px 5px rgba(50, 50, 50, 0.52);
+    padding-top: 10px;
+}
+
+.sign-up-form-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.sign-up-input {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
