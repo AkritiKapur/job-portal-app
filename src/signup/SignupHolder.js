@@ -26,6 +26,7 @@ class SignupHolder extends Component {
                                 <div className="col-md-10 sign-up-form-container">
                                     <input className="form-control sign-up-input" type="text" placeholder="Username" aria-label="Username" />
                                     <input className="form-control sign-up-input" type="password" placeholder="Password" aria-label="Password" />
+                                    <button type="button" class="btn btn-dark">Login</button>
                                 </div>
                             </div>
                     </Tab>
@@ -34,6 +35,11 @@ class SignupHolder extends Component {
                                 <div className="col-md-10 sign-up-form-container">
                                     <input className="form-control sign-up-input" type="text" placeholder="Username" aria-label="Username" />
                                     <input className="form-control sign-up-input" type="password" placeholder="Password" aria-label="Password" />
+                                    <div className="custom-control custom-switch sign-up-input">
+                                        <input type="checkbox" className="custom-control-input" id="profileSwitch" />
+                                        <label className="custom-control-label" for="profileSwitch">Company Account</label>
+                                    </div>
+                                    <button type="button" class="btn btn-dark">Signup</button>
                                 </div>
                             </div>
                     </Tab>
