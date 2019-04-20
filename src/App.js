@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Tabs from 'react-bootstrap/Tabs'
-import Tab from 'react-bootstrap/Tab'
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
 import logo from './logo.svg';
 import { sampleAction } from './actions/sampleAction';
 import './App.css';
 import Dashboard from './candidateDashboard/Dashboard';
 import Header from './header/header';
 import Search from './search/search';
+import SignupHolder from './authentication/SignupHolder';
 
 class App extends Component {
   constructor(props, context) {
@@ -23,7 +24,8 @@ class App extends Component {
         <Header />
         
         <div className="container-fluid">
-          <Search />
+          < SignupHolder />
+          {/* <Search />
           <Tabs
             id="controlled-tab-home"
             activeKey={this.state.key}
@@ -35,7 +37,7 @@ class App extends Component {
             <Tab eventKey="applied" title="Applications">
               <Dashboard />
             </Tab>
-          </Tabs>
+          </Tabs> */}
         </div>
       </div>
     );
