@@ -12,7 +12,7 @@ class Login extends Component {
             submitted: false
         };
 
-        this.props.logout({});
+        // this.props.logout({});
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,7 +41,6 @@ class Login extends Component {
         };
 
         this.props.request({username});
-        // dispatch(this.request({ username }));
 
         let user = {
             id: 1,
