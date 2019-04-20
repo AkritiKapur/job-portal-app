@@ -24,7 +24,7 @@ class SignupHolder extends Component {
                         onSelect={key => this.setState({ key })}
                     >
                         <Tab eventKey="login" title="Login">
-                                <Login />
+                            <Login />
                         </Tab>
                         <Tab eventKey="signup" title="Sign Up">
                             <Signup />
