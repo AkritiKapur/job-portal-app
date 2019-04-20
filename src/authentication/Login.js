@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {authenticationConstants} from './actions';
+import {logoutAction, success, request} from './authenticationActions';
 
 class Login extends Component {
     constructor(props, context) {
@@ -11,6 +11,8 @@ class Login extends Component {
             password: '',
             submitted: false
         };
+
+        this.props.logout({});
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,7 +40,7 @@ class Login extends Component {
             body: JSON.stringify({ username, password })
         };
 
-        this.props.dispatch(this.request({username}));
+        this.props.request({username});
         // dispatch(this.request({ username }));
 
         let user = {
@@ -46,7 +48,7 @@ class Login extends Component {
             username: username,
         };
 
-        this.props.dispatch(this.success({user}));
+        this.props.success(user);
         localStorage.setItem("user", JSON.stringify(user));
 
     }
@@ -70,10 +72,14 @@ class Login extends Component {
             </div>
         )
     }
+}
 
-    request(user) { return { type: authenticationConstants.LOGIN_REQUEST, user } }
-    success(user) { return { type: authenticationConstants.LOGIN_SUCCESS, user } }
-    // failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+function mapDispatchToProps(dispatch) {
+    return({
+        request: (user) => {dispatch(request(user))},
+        success: (user) => {dispatch(success(user))},
+        logout: (user) => {dispatch(logoutAction(user))},
+    })
 }
 
 const mapStateToProps = state => ({
@@ -81,4 +87,4 @@ const mapStateToProps = state => ({
     loggingIn: state.authentication,
 });
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
