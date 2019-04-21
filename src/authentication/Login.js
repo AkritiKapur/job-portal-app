@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {logoutAction, success, request, failure} from './authenticationActions';
-import history from '../utils/history';
 import { withRouter } from "react-router";
 
 class Login extends Component {
@@ -15,7 +14,7 @@ class Login extends Component {
             hasError: false
         };
 
-        // this.props.logout({});
+        this.props.logout({});
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,7 +45,7 @@ class Login extends Component {
 
         this.props.request({username});
 
-        let user = {
+        const user = {
             id: 1,
             username: username,
         };
@@ -57,11 +56,12 @@ class Login extends Component {
 
         // If error
         // this.props.failure({});
-        // this.setState({hasError:true})
+        // this.setState({hasError:true});
         
     }
 
     render() {
+        const {loggingIn} = this.props;
         const {submitted, hasError} = this.state;
 
         return(
@@ -80,7 +80,7 @@ class Login extends Component {
                                 <div className="help-block">Either username or password incorrect</div>
                             }
                         </div>
-                        <button type="submit" className="btn btn-dark sign-up-input">Login</button>
+                        <button type="submit" className="btn btn-dark sign-up-input" disabled={!loggingIn}>Login</button>
                     </form>
                 </div>
             </div>
