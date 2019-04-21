@@ -4,6 +4,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Dashboard from './Dashboard';
 import Search from '../search/search';
+import { withRouter } from "react-router";
 
 class Home extends Component {
     constructor(props, context) {
@@ -34,4 +35,4 @@ class Home extends Component {
     }
 }
 
-export default connect()(Home);
+export default withRouter(connect()(Home));

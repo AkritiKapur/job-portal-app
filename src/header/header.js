@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './header.css';
 import {logoutAction} from '../authentication/authenticationActions';
+import history from '../utils/history';
+import { withRouter } from "react-router";
 
 class Header extends Component {
     constructor(props) {
@@ -15,6 +17,7 @@ class Header extends Component {
         // remove user from local storage to log user out
         localStorage.removeItem('user');
         this.props.logout({});
+        this.props.history.push('/login');
     };
 
     render() {
@@ -45,4 +48,4 @@ function mapDispatchToProps(dispatch) {
     })
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

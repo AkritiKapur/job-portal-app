@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {logoutAction, success, request} from './authenticationActions';
+import history from '../utils/history';
+import { withRouter } from "react-router";
 
 class Login extends Component {
     constructor(props, context) {
@@ -49,7 +51,8 @@ class Login extends Component {
 
         this.props.success(user);
         localStorage.setItem("user", JSON.stringify(user));
-
+        this.props.history.push('/');
+        // history.push('/');
     }
 
     render() {
@@ -86,4 +89,4 @@ const mapStateToProps = state => ({
     loggingIn: state.authentication,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
