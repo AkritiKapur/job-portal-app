@@ -56,7 +56,7 @@ class Signup extends Component {
         this.props.request({name});
 
         this.props.success({});
-        this.props.history.push('/login');
+        this.props.changeTab('login');
 
         // If error
         // this.props.failure({});

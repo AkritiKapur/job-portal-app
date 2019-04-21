@@ -12,6 +12,12 @@ class SignupHolder extends Component {
         this.state = {
           key: 'login',
         };
+
+        this.changeTab = this.changeTab.bind(this);
+    }
+
+    changeTab (tab) {
+        this.setState({key:tab});
     }
 
     render() {
@@ -27,7 +33,7 @@ class SignupHolder extends Component {
                             <Login />
                         </Tab>
                         <Tab eventKey="signup" title="Sign Up">
-                            <Signup />
+                            <Signup changeTab={this.changeTab}/>
                         </Tab>
                     </Tabs>
                 </div>
