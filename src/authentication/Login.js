@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {logoutAction, success, request} from './authenticationActions';
+import {logoutAction, success, request, failure} from './authenticationActions';
 import history from '../utils/history';
 import { withRouter } from "react-router";
 
@@ -11,7 +11,8 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
-            submitted: false
+            submitted: false,
+            hasError: false
         };
 
         // this.props.logout({});
@@ -22,6 +23,7 @@ class Login extends Component {
 
     handleChange(e) {
         const { name, value } = e.target;
+        this.setState({hasError: false});
         this.setState({ [name]: value });
     }
 
@@ -52,20 +54,31 @@ class Login extends Component {
         this.props.success(user);
         localStorage.setItem("user", JSON.stringify(user));
         this.props.history.push('/');
+
+        // If error
+        // this.props.failure({});
+        // this.setState({hasError:true})
+        
     }
 
     render() {
-        const { username, password, submitted } = this.state;
+        const {submitted, hasError} = this.state;
 
         return(
             <div className="row">
                 <div className="col-md-10 sign-up-form-container">
                     <form onSubmit={this.handleSubmit}>
-                        <div className="form-group">
-                            <input className="form-control sign-up-input" name="username" type="text" placeholder="Username" aria-label="Username" onChange={this.handleChange}/>
+                        <div className={"form-group" + (submitted && hasError ? ' has-error' : '')} >
+                            <input className="form-control sign-up-input" name="username" type="email" placeholder="Username" aria-label="Username" onChange={this.handleChange} required />
+                            {submitted && hasError &&
+                                <div className="help-block">Either username or password incorrect</div>
+                            }
                         </div>
-                        <div className="form-group">
-                            <input className="form-control sign-up-input" name="password" type="password" placeholder="Password" aria-label="Password" onChange={this.handleChange} />
+                        <div className={"form-group" + (submitted && hasError ? ' has-error' : '')}>
+                            <input className="form-control sign-up-input" name="password" type="password" placeholder="Password" aria-label="Password" onChange={this.handleChange} required />
+                            {submitted && hasError &&
+                                <div className="help-block">Either username or password incorrect</div>
+                            }
                         </div>
                         <button type="submit" className="btn btn-dark sign-up-input">Login</button>
                     </form>
@@ -80,6 +93,7 @@ function mapDispatchToProps(dispatch) {
         request: (user) => {dispatch(request(user))},
         success: (user) => {dispatch(success(user))},
         logout: (user) => {dispatch(logoutAction(user))},
+        failure: (user) => {dispatch(failure(user))},
     })
 }
 

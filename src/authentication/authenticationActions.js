@@ -14,3 +14,8 @@ export const success = user => ({
     type: authenticationConstants.LOGIN_SUCCESS,
     user 
 })
+
+export const failure = user => ({
+    type: authenticationConstants.LOGIN_FAILURE,
+    user 
+})
