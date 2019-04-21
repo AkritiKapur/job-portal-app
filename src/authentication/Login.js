@@ -52,7 +52,6 @@ class Login extends Component {
         this.props.success(user);
         localStorage.setItem("user", JSON.stringify(user));
         this.props.history.push('/');
-        // history.push('/');
     }
 
     render() {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Jobs from './Jobs'
+import ApplicationFilter from './ApplicationFilter';
 
 class Dashboard extends Component {
     // componentDidMount() {
@@ -26,6 +27,7 @@ class Dashboard extends Component {
 
         return (
             <div className="candidate-dashboard">
+                <ApplicationFilter />
                 <Jobs jobs={jobs} />
             </div>
         );

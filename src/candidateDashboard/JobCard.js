@@ -37,6 +37,7 @@ class JobCard extends Component {
 
     applyForJob = (event) => {
         this.setState({applicationStatus: true});
+        // TODO: add call to send job application to backend.
     }
 }
 
