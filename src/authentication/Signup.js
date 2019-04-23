@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {request, success, failure} from './signupActions';
 import { withRouter } from "react-router";
 import { stat } from 'fs';
+import apiUrl from '../apiUtil/url';
 
 class Signup extends Component {
     constructor(props, context) {
@@ -50,17 +51,21 @@ class Signup extends Component {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password, name, isCompany }),
+            body: JSON.stringify({ username, password, isCompany, name }),
         };
 
         this.props.request({name});
 
-        this.props.success({});
-        this.props.changeTab('login');
-
-        // If error
-        // this.props.failure({});
-        // this.setState({hasError:true});
+        return fetch(`${apiUrl}/signup`, requestOptions)
+            .then(results => {
+                if (!results.ok) {
+                    this.props.failure({});
+                    this.setState({hasError:true});
+                    throw Error(response.statusText);
+                }
+                this.props.success({});
+                this.props.changeTab('login');
+            });
     }
 
 
