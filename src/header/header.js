@@ -26,7 +26,7 @@ class Header extends Component {
             <nav className="navbar navbar-dark bg-dark portal-navbar">
                 <a className="navbar-brand" href="#">JobPortal</a>
                 { loggedIn && 
-                    <span className="navbar-brand">Welcome {user.username}
+                    <span className="navbar-brand">Welcome {user.name}
                     <button onClick={this.initLogout}>Logout ?</button>
                     </span>
                 }

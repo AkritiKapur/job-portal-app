@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {logoutAction, success, request, failure} from './authenticationActions';
 import { withRouter } from "react-router";
+import apiUrl from '../apiUtil/url';
 
 class Login extends Component {
     constructor(props, context) {
@@ -37,27 +38,36 @@ class Login extends Component {
     }
 
     login(username, password) {
+        console.log({ username, password })
         const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password })
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',
+                       'Accept': 'application/json' },
         };
 
+        const query = "?username=" + username + "&password=" + password;
         this.props.request({username});
-
-        const user = {
-            id: 1,
-            username: username,
-        };
-
-        this.props.success(user);
-        localStorage.setItem("user", JSON.stringify(user));
-        this.props.history.push('/');
-
-        // If error
-        // this.props.failure({});
-        // this.setState({hasError:true});
-        
+    
+        return fetch(`${apiUrl}/signin${query}`, requestOptions)
+            .then(results => {
+                if (!results.ok) {
+                    this.props.failure({});
+                    this.setState({hasError:true});
+                    throw Error(response.statusText);
+                }
+                return results.text()
+            }
+            ).then(text => JSON.parse(text))
+            .then(user => {
+                let userstate = {
+                    "id": user.id,
+                    "name": user.name,
+                    "email": user.username,
+                    "isCompany": user.flag 
+                };
+                this.props.success(userstate);
+                localStorage.setItem('user', JSON.stringify(userstate));
+            });
     }
 
     render() {
