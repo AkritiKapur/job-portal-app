@@ -53,7 +53,7 @@ class Login extends Component {
                 if (!results.ok) {
                     this.props.failure({});
                     this.setState({hasError:true});
-                    throw Error(response.statusText);
+                    throw Error(results.statusText);
                 }
                 return results.text()
             }

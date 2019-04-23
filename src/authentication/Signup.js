@@ -61,7 +61,7 @@ class Signup extends Component {
                 if (!results.ok) {
                     this.props.failure({});
                     this.setState({hasError:true});
-                    throw Error(response.statusText);
+                    throw Error(results.statusText);
                 }
                 this.props.success({});
                 this.props.changeTab('login');
