@@ -27,7 +27,7 @@ class Dashboard extends Component {
 
         return (
             <div className="candidate-dashboard">
-                <ApplicationFilter />
+                {/* <ApplicationFilter /> */}
                 <Jobs jobs={jobs} />
             </div>
         );

@@ -15,9 +15,18 @@ class Home extends Component {
     }
 
     render() {
+        const items = [
+            {
+                key: "test1"
+            },
+            {
+                key: "test2"
+            }
+        ]
+
         return (
             <div className="home-candidate-container">
-                <Search />
+                <Search items={items} />
                 <Tabs
                     id="controlled-tab-home"
                     activeKey={this.state.key}
