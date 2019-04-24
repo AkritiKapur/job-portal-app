@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Dashboard from './Dashboard';
-import Search from '../search/search';
+
 import { withRouter } from "react-router";
 
 class Home extends Component {
@@ -15,26 +15,8 @@ class Home extends Component {
     }
 
     render() {
-        const items = [
-            {
-                key: "test1",
-                data: [
-                    "Software Engineer I",
-                    "Project Manager"
-                ]
-            },
-            {
-                key: "test2",
-                data: [
-                    "Python",
-                    "JQuery"
-                ]
-            }
-        ]
-
         return (
             <div className="home-candidate-container">
-                <Search items={items} />
                 <Tabs
                     id="controlled-tab-home"
                     activeKey={this.state.key}

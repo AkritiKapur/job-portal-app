@@ -2,10 +2,35 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Jobs from './Jobs'
 import ApplicationFilter from './ApplicationFilter';
+import Search from '../search/search';
 
 class Dashboard extends Component {
     constructor(props, context) {
         super(props, context);
+
+        this.items = [
+            {
+                key: "test1",
+                data: [
+                    "Software Engineer I",
+                    "Project Manager"
+                ]
+            },
+            {
+                key: "test2",
+                data: [
+                    "Python",
+                    "JQuery"
+                ]
+            }
+        ]
+
+        this.state = this.items.reduce(function(map, obj) {
+            map[obj.key] = []
+            return map;
+        }, {})
+
+        this.handleFilter = this.handleFilter.bind(this);
     }
     // componentDidMount() {
     //     this.fetchData();
@@ -20,11 +45,17 @@ class Dashboard extends Component {
     //         .catch(error => console.log(error));
     // }
 
+    handleFilter(filterName, values) {
+        this.setState({[filterName]: values});
+    }
+
     refresh() {
         // refresh the job cards in the UI
     }
 
     render() {
+        const items = this.items;
+
         const jobs = [
             {"id":"110101", "title": "Software Engineer I", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
             {"id":"102342", "title": "Data Scientist Engineer", "description": "Scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus. Congue mauris rhoncus aenean vel elit scelerisque. Ante metus dictum at tempor commodo ullamcorper a lacus vestibulum. Vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi. Blandit turpis cursus in hac habitasse platea dictumst quisque sagittis. Quam adipiscing vitae proin sagittis nisl rhoncus. Iaculis eu non diam phasellus vestibulum lorem sed. Blandit cursus risus at ultrices mi tempus imperdiet. Et malesuada fames ac turpis egestas integer. In fermentum posuere urna nec. Tristique senectus et netus et malesuada fames ac. Cursus eget nunc scelerisque viverra mauris. Viverra orci sagittis eu volutpat odio facilisis mauris. Proin nibh nisl condimentum id venenatis a condimentum. Pretium quam vulputate dignissim suspendisse in est ante in. Ullamcorper sit amet risus nullam eget felis eget nunc. Et ultrices neque ornare aenean."},
@@ -35,7 +66,8 @@ class Dashboard extends Component {
 
         return (
             <div className="candidate-dashboard">
-                {/* <ApplicationFilter /> */}
+                <Search items={items} handleFilter={this.handleFilter}/>
+                <hr />
                 <Jobs jobs={jobs} />
             </div>
         );
