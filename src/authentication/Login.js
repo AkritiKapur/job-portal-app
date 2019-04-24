@@ -53,17 +53,19 @@ class Login extends Component {
                 if (!results.ok) {
                     this.props.failure({});
                     this.setState({hasError:true});
-                    throw Error(results.statusText);
+                    return Promise.reject(results.statusText);
+                    // throw Error(results.statusText);
                 }
                 return results.text()
             }
             ).then(text => JSON.parse(text))
             .then(user => {
+                console.log(user);
                 let userstate = {
                     "id": user.id,
                     "name": user.name,
-                    "email": user.username,
-                    "isCompany": user.flag 
+                    "email": user.user.username,
+                    "isCompany": !user.user.flag 
                 };
                 this.props.success(userstate);
                 localStorage.setItem('user', JSON.stringify(userstate));

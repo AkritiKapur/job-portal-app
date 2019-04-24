@@ -48,10 +48,12 @@ class Signup extends Component {
     }
 
     Signup (username, password, name, isCompany) {
+        const flag = !isCompany;
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password, isCompany, name }),
+            headers: { 'Content-Type': 'application/json',
+                        'Accept': 'application/json'},
+            body: JSON.stringify({ username, password, flag, name }),
         };
 
         this.props.request({name});
@@ -61,7 +63,7 @@ class Signup extends Component {
                 if (!results.ok) {
                     this.props.failure({});
                     this.setState({hasError:true});
-                    throw Error(results.statusText);
+                    return Promise.reject(results.statusText);
                 }
                 this.props.success({});
                 this.props.changeTab('login');

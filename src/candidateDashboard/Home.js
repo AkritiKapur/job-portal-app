@@ -17,10 +17,18 @@ class Home extends Component {
     render() {
         const items = [
             {
-                key: "test1"
+                key: "test1",
+                data: [
+                    "Software Engineer I",
+                    "Project Manager"
+                ]
             },
             {
-                key: "test2"
+                key: "test2",
+                data: [
+                    "Python",
+                    "JQuery"
+                ]
             }
         ]
 
