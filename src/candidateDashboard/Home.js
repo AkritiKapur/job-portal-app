@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Dashboard from './Dashboard';
+import ApplicationDashboard from './ApplicationDashboard';
 
 import { withRouter } from "react-router";
 
@@ -26,7 +27,7 @@ class Home extends Component {
                         <Dashboard />
                     </Tab>
                     <Tab eventKey="applied" title="Applications">
-                        <Dashboard />
+                        <ApplicationDashboard />
                     </Tab>
                 </Tabs>
             </div>

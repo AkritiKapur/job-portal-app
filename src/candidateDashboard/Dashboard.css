@@ -1,7 +1,12 @@
 .job-card-holder {
     padding-bottom: 25px;
+    padding-top: 10px;
 }
 
 .applied-text {
     color: darkgreen;
+}
+
+.withdrawn-text {
+    color: crimson;
 }

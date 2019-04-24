@@ -60,7 +60,9 @@ class Dashboard extends Component {
                     return {
                         "id": job.jobId,
                         "title": job.jobRole,
-                        "description": job.jobDescription
+                        "description": job.jobDescription,
+                        "company": job.companyObj.name,
+                        "companyId": job.companyObj.id,
                     }
                 })
 
@@ -80,12 +82,13 @@ class Dashboard extends Component {
     render() {
         const items = this.state.items;
         const jobs = this.state.jobs;
+        const appliedTabOption = false;
 
         return (
             <div className="candidate-dashboard">
                 <Search items={items} handleFilter={this.handleFilter} refresh={this.refresh}/>
                 <hr />
-                <Jobs jobs={jobs} />
+                <Jobs jobs={jobs} option={appliedTabOption}/>
             </div>
         );
     }
