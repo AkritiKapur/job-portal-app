@@ -1,52 +1,55 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Jobs from './Jobs'
-import ApplicationFilter from './ApplicationFilter';
 import Search from '../search/search';
+import apiUrl from '../apiUtil/url';
 
 class Dashboard extends Component {
     constructor(props, context) {
         super(props, context);
-
-        this.items = [
-            {
-                key: "test1",
-                data: [
-                    "Software Engineer I",
-                    "Project Manager"
-                ]
-            },
-            {
-                key: "test2",
-                data: [
-                    "Python",
-                    "JQuery"
-                ]
-            }
-        ]
-
-        this.state = this.items.reduce(function(map, obj) {
-            map[obj.key] = []
-            return map;
-        }, {})
+        this.state = {
+            items: [],
+            filters: {}
+        };
 
         this.handleFilter = this.handleFilter.bind(this);
+        this.refresh = this.refresh.bind(this);
+        this.fetchRoles = this.fetchRoles.bind(this);
+        this.fetchJobs = this.fetchJobs.bind(this);
     }
-    // componentDidMount() {
-    //     this.fetchData();
-    // }
+    
+    componentDidMount() {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',
+                       'Accept': 'application/json' },
+        };
+        this.fetchRoles(requestOptions);
+        this.fetchJobs(requestOptions)
+    }
 
 
-    // fetchData() {
-    //     const url = "https://randomuser.me/api/?results=50&nat=us,dk,fr,gb";
-    //     return fetch(url)
-    //         .then(response => response.json())
-    //         .then(parsedJSON => this.setState({ jobs: parsedJSON.results }))
-    //         .catch(error => console.log(error));
-    // }
+    fetchRoles(requestOptions) {
+        const roleFilterAPI = `${apiUrl}/getRoles`;
+    
+        return fetch(roleFilterAPI, requestOptions)
+            .then(results => {
+                return results.text()
+            })
+            .then(text => JSON.parse(text))
+            .then(roles => {
+                const newItems = this.state.items.concat({key: "roles", data: roles});
+                this.setState({items: newItems});
+                this.setState({filters: {roles: []}});
+            });
+    }
+
+    fetchJobs(requestOptions) {
+
+    }
 
     handleFilter(filterName, values) {
-        this.setState({[filterName]: values});
+        this.setState({filters: {[filterName]: values}});
     }
 
     refresh() {
@@ -54,7 +57,7 @@ class Dashboard extends Component {
     }
 
     render() {
-        const items = this.items;
+        const items = this.state.items;
 
         const jobs = [
             {"id":"110101", "title": "Software Engineer I", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
@@ -66,7 +69,7 @@ class Dashboard extends Component {
 
         return (
             <div className="candidate-dashboard">
-                <Search items={items} handleFilter={this.handleFilter}/>
+                <Search items={items} handleFilter={this.handleFilter} refresh={this.refresh}/>
                 <hr />
                 <Jobs jobs={jobs} />
             </div>

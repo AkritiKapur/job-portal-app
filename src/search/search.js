@@ -17,12 +17,15 @@ class Search extends Component {
     }
 
     handleChecked(filterName, values) {
+        // Calls function in the parent to update selected filter values
         this.props.handleFilter(filterName, values);
     }
 
     handleSubmit(e) {
         e.preventDefault();
         this.setState({ submitted: true });
+        // Refreshes the jobs
+        this.props.refresh();
     }
 
 
