@@ -4,6 +4,7 @@ import './header.css';
 import {logoutAction} from '../authentication/authenticationActions';
 import history from '../utils/history';
 import { withRouter } from "react-router";
+import './header.css';
 
 class Header extends Component {
     constructor(props) {
@@ -26,8 +27,8 @@ class Header extends Component {
             <nav className="navbar navbar-dark bg-dark portal-navbar">
                 <a className="navbar-brand" href="#">JobPortal</a>
                 { loggedIn && 
-                    <span className="navbar-brand">Welcome {user.name}
-                    <button onClick={this.initLogout}>Logout ?</button>
+                    <span className="navbar-brand welcome-span">Welcome {user.name}
+                    <button type="button" class="btn btn-light logout-button" onClick={this.initLogout}>Logout ?</button>
                     </span>
                 }
             </nav>

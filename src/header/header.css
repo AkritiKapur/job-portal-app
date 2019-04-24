@@ -1,3 +1,11 @@
 .portal-navbar {
     margin-bottom: 15px;
 }
+
+.welcome-span {
+    color: #b3d7ff;
+}
+
+.logout-button {
+    margin-left: 5px;
+}
