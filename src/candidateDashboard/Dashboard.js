@@ -56,7 +56,8 @@ class Dashboard extends Component {
             })
             .then(text => JSON.parse(text))
             .then(jobs => {
-                const jobTemplate = jobs.map(job => {
+                const j =  jobs || [];
+                const jobTemplate = j.map(job => {
                     return {
                         "id": job.jobId,
                         "title": job.jobRole,

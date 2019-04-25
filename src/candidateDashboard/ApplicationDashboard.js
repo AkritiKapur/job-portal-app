@@ -35,7 +35,8 @@ class ApplicationDashboard extends Component {
             })
             .then(text => JSON.parse(text))
             .then(apps => {
-                const jobTemplate = apps.map(app => {
+                const applications = apps || [];
+                const jobTemplate = applications.map(app => {
                     return {
                         "id": app.job.jobId,
                         "title": app.job.jobRole,
@@ -43,7 +44,7 @@ class ApplicationDashboard extends Component {
                         "company": app.job.companyObj.name,
                         "companyId": app.job.companyObj.id
                     }
-                })
+                });
 
                 this.setState({jobs: jobTemplate});
             });
