@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {request, success, failure} from './signupActions';
 import { withRouter } from "react-router";
-import { stat } from 'fs';
 import apiUrl from '../apiUtil/url';
 
 class Signup extends Component {
