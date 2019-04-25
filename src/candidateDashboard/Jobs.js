@@ -13,7 +13,7 @@ class Jobs extends Component {
 
         this.props.jobs.forEach(job => {
             cards.push(
-                <JobCard key={job.id} title={job.title} id={job.id} description={job.description} company={job.company} option={option} />
+                <JobCard key={job.id} title={job.title} id={job.id} description={job.description} company={job.company} appId={job.appId} option={option} />
             )
         });
         return (
