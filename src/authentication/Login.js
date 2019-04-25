@@ -65,10 +65,11 @@ class Login extends Component {
                     "id": user.id,
                     "name": user.name,
                     "email": user.user.username,
-                    "isCompany": !user.user.flag 
+                    "isCompany": !user.user.flag
                 };
                 this.props.success(userstate);
                 localStorage.setItem('user', JSON.stringify(userstate));
+                this.props.refresh();
                 this.props.history.push('/');
             });
     }

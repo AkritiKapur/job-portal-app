@@ -30,7 +30,7 @@ class SignupHolder extends Component {
                         onSelect={key => this.setState({ key })}
                     >
                         <Tab eventKey="login" title="Login">
-                            <Login />
+                            <Login refresh={this.props.refresh} />
                         </Tab>
                         <Tab eventKey="signup" title="Sign Up">
                             <Signup changeTab={this.changeTab}/>
