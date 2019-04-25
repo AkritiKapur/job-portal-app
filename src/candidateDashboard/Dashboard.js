@@ -49,26 +49,29 @@ class Dashboard extends Component {
         const user = JSON.parse(localStorage.getItem('user'));
         const query = `?id=${user.id}`;
         const jobsAPI = `${apiUrl}/getNotAppliedJobs${query}`;
-    
-        return fetch(jobsAPI, requestOptions)
-            .then(results => {
-                return results.text()
-            })
-            .then(text => JSON.parse(text))
-            .then(jobs => {
-                const j =  jobs || [];
-                const jobTemplate = j.map(job => {
-                    return {
-                        "id": job.jobId,
-                        "title": job.jobRole,
-                        "description": job.jobDescription,
-                        "company": job.companyObj.name,
-                        "companyId": job.companyObj.id,
-                    }
-                })
 
-                this.setState({jobs: jobTemplate});
-            });
+
+        if (!user.isCompany) {
+            return fetch(jobsAPI, requestOptions)
+                .then(results => {
+                    return results.text()
+                })
+                .then(text => JSON.parse(text))
+                .then(jobs => {
+                    const j =  jobs || [];
+                    const jobTemplate = j.map(job => {
+                        return {
+                            "id": job.jobId,
+                            "title": job.jobRole,
+                            "description": job.jobDescription,
+                            "company": job.companyObj.name,
+                            "companyId": job.companyObj.id,
+                        }
+                    })
+
+                    this.setState({jobs: jobTemplate});
+                });
+        }
 
     }
 

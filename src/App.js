@@ -24,7 +24,6 @@ class App extends Component {
   componentDidMount() {
     const user = JSON.parse(localStorage.getItem('user'));
     this.setState({isCompany: !!user && user.isCompany});
-    console.log(this.state);
     // this.fetchJobs(requestOptions);
   }
 

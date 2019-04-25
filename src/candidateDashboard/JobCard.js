@@ -38,7 +38,7 @@ class JobCard extends Component {
                     <div className="card-body">
                         <h5 className="card-title">{id}: {title}</h5>
                         <h6 className="card-title">{company}</h6>
-                        <p className="card-text">{desc}{appliedTabOption}</p>
+                        <p className="card-text">{desc}</p>
                         {applicationStatusButton}
                     </div>
                 </div>
