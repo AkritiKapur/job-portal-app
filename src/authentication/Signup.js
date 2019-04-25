@@ -33,7 +33,7 @@ class Signup extends Component {
     handleCheckboxChange(e) {
         const item = e.target.name;
         const isChecked = e.target.checked;
-        this.setState({item: isChecked});
+        this.setState({[item]: isChecked});
     }
 
     handleSubmit(e) {
@@ -91,7 +91,7 @@ class Signup extends Component {
                             <input className="form-control sign-up-input" type="password" name="password" placeholder="Password" aria-label="Password" onChange={this.handleChange} required />
                         </div>
                         <div className="custom-control custom-switch sign-up-input">
-                            <input type="checkbox" name="isCompany" className="custom-control-input" id="profileSwitch" />
+                            <input type="checkbox" name="isCompany" className="custom-control-input" id="profileSwitch" onChange={this.handleCheckboxChange} />
                             <label className="custom-control-label" for="profileSwitch">Company Account</label>
                         </div>
                         <button type="submit" className="btn btn-dark sign-up-input" disabled={!registering} >Signup</button>

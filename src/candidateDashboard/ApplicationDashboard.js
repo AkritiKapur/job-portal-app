@@ -16,15 +16,16 @@ class ApplicationDashboard extends Component {
     }
     
     componentDidMount() {
+        this.fetchJobs();
+    }
+
+    fetchJobs() {
         const requestOptions = {
             method: 'GET',
             headers: { 'Content-Type': 'application/json',
                        'Accept': 'application/json' },
         };
-        this.fetchJobs(requestOptions)
-    }
 
-    fetchJobs(requestOptions) {
         const user = JSON.parse(localStorage.getItem('user'));
         const query = `?id=${user.id}`;
         const jobsAPI = `${apiUrl}/getAppliedJobs${query}`;
@@ -52,7 +53,7 @@ class ApplicationDashboard extends Component {
     }
 
     refresh() {
-
+        this.fetchJobs();
     }
 
     render() {

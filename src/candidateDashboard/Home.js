@@ -20,8 +20,8 @@ class Home extends Component {
             <div className="home-candidate-container">
                 <Tabs
                     id="controlled-tab-home"
-                    activeKey={this.state.key}
-                    onSelect={key => this.setState({ key })}
+                    defaultActiveKey="dashboard"
+                    mountOnEnter={true}
                 >
                     <Tab eventKey="dashboard" title="Available Jobs">
                         <Dashboard />

@@ -26,7 +26,7 @@ class Dashboard extends Component {
                        'Accept': 'application/json' },
         };
         this.fetchRoles(requestOptions);
-        this.fetchJobs(requestOptions)
+        this.fetchJobs(requestOptions);
     }
 
 
@@ -77,7 +77,12 @@ class Dashboard extends Component {
     }
 
     refresh() {
-        // refresh the job cards in the UI
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',
+                       'Accept': 'application/json' },
+        };
+        this.fetchJobs(requestOptions);
     }
 
     render() {
