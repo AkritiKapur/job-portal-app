@@ -2,3 +2,20 @@
 textarea {
     height:200px;
 }
+
+.job-card-btn-container {
+    display: inline;
+    margin-right: 15px;
+}
+
+.tags-input {
+    margin-bottom: 10px;
+}
+
+.withdrawn-text {
+    color: crimson;
+}
+
+.job-card-label {
+    font-weight: 525;
+}

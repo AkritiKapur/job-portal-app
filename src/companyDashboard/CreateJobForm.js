@@ -53,7 +53,7 @@ class CreateJobForm extends Component {
                     <div className="form-group" >
                         <input className="form-control" name="location" type="text" placeholder="Location" aria-label="Location" onChange={this.handleChange} required />
                     </div>
-                    <TagsInput value={this.state.skills} onChange={this.handleTags} placeholder="Add skills"/>
+                    <TagsInput className="tags-input" value={this.state.skills} onChange={this.handleTags} placeholder="Add skills"/>
                     <button type="submit" className="btn btn-dark">Submit</button>
                 </form>
             </div>

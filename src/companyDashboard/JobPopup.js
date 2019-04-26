@@ -42,6 +42,7 @@ class JobPopup extends Component {
                     return Promise.reject(results.statusText);
                 }
                 this.setState({show: false});
+                this.props.refreshJobs();
             });
     }
   

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Dashboard.css';
 import { MdDone, MdDelete } from "react-icons/md";
+import './ApplicationDetailsPopup';
+import ApplicationDetailsPopup from './ApplicationDetailsPopup';
+import apiUrl from '../apiUtil/url';
 
 class JobCard extends Component {
     constructor(props, context) {
@@ -17,10 +20,12 @@ class JobCard extends Component {
         const MAXLEN = 500;
         const job = this.props.job;
         const desc = job.description.length > MAXLEN ? job.description.substring(0, MAXLEN) +'..': job.description;
-        const withdrawn = <p className="withdrawn-text"><MdDone /> Withdrawn </p>;
+        const withdrawn = <div className="withdrawn-text job-card-btn-container"><MdDone /> Deleted </div>;
 
         const applicationStatusButton = this.state.applicationWithdrawStatus ? withdrawn :
-            <button className="btn btn-danger" onClick={this.withdrawFromApplication}><span><MdDelete />Delete</span></button>;
+            <button className="btn btn-danger" onClick={this.withdrawJob}><span><MdDelete />Delete</span></button>;
+        const viewApplication = job.apps && job.apps.length ? <ApplicationDetailsPopup applications={this.props.job.apps}/> : 
+            (<button className="btn btn-warning" disabled> No Applications </button>)
 
 
         return (
@@ -29,7 +34,13 @@ class JobCard extends Component {
                     <div className="card-body">
                         <h5 className="card-title">{job.id}: {job.title}</h5>
                         <p className="card-text">{desc}</p>
-                        {applicationStatusButton}
+                        <p className="card-text"><span class="job-card-label">Required Skills: </span> {job.skills}</p>
+                        <div className="job-card-btn-container">
+                            {applicationStatusButton}
+                        </div>
+                        <div className="job-card-btn-container">
+                            {viewApplication}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -38,8 +49,26 @@ class JobCard extends Component {
 
     withdrawJob = (event) => {
         // Load component which asks to reconsider
-        this.setState({applicationWithdrawStatus: true});
+        this._withdraw(this.props.job.id);
     }
+
+    _withdraw = (id) => {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',
+                        'Accept': 'application/json'},
+        };
+
+        return fetch(`${apiUrl}/deleteJob?id=${id}`, requestOptions)
+            .then(results => {
+                if (!results.ok) {
+                    return Promise.reject(results.statusText);
+                }
+                // Set application status as true if the request is Okay!
+                this.setState({applicationWithdrawStatus: true});
+            });
+    }
+
 }
 
 export default connect()(JobCard);
