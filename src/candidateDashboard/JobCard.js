@@ -20,7 +20,7 @@ class JobCard extends Component {
 
     render() {
         const MAXLEN = 500;
-        const {title, id, description, company} = this.props;
+        const {title, id, description, company, skills} = this.props;
         const applied = <p className="applied-text"><MdDone /> Applied </p>;
         const desc = description.length > MAXLEN ? description.substring(0, MAXLEN) +'..': description;
         const appliedTabOption = !this.props.option;
@@ -39,6 +39,7 @@ class JobCard extends Component {
                         <h5 className="card-title">{id}: {title}</h5>
                         <h6 className="card-title">{company}</h6>
                         <p className="card-text">{desc}</p>
+                        <p className="card-text"><span class="job-card-label">Required Skills: </span> {skills}</p>
                         {applicationStatusButton}
                     </div>
                 </div>
