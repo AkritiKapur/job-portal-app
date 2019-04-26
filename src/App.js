@@ -1,3 +1,10 @@
+/**
+ * App component
+ * Main entry point of the App
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -21,6 +28,10 @@ class App extends Component {
   
   }
 
+  /**
+   * Only called when the App loads
+   * This is used to generate role based flow.
+   */
   componentDidMount() {
     const user = JSON.parse(localStorage.getItem('user'));
     this.setState({isCompany: !!user && user.isCompany});

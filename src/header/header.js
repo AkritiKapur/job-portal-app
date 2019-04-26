@@ -1,3 +1,10 @@
+/**
+ * Header component
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './header.css';
@@ -13,6 +20,10 @@ class Header extends Component {
         this.initLogout = this.initLogout.bind(this);
     }
 
+    /**
+     * Logs out the user.
+     * @param {event} e 
+     */
     initLogout(e) {
         e.preventDefault();
         // remove user from local storage to log user out

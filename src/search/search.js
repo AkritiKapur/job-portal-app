@@ -1,3 +1,10 @@
+/**
+ * Search component
+ * Supports dynamic loading of Search (filter) dropdowns.
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SearchDropdown from './searchDropdown';
@@ -16,11 +23,22 @@ class Search extends Component {
         this.handleChecked = this.handleChecked.bind(this);
     }
 
+    /**
+     * Sends the filter value to the parent
+     * component to filter jobs.
+     * @param {String} filterName 
+     * @param {List} values 
+     */
     handleChecked(filterName, values) {
         // Calls function in the parent to update selected filter values
         this.props.handleFilter(filterName, values);
     }
 
+    /**
+     * handles Filter form submit.
+     * After submission, the jobs are refreshed.
+     * @param {event} e 
+     */
     handleSubmit(e) {
         e.preventDefault();
         this.setState({ submitted: true });

@@ -1,3 +1,10 @@
+/**
+ * Search Dropdown Component
+ * Supports Multiple select values from the dropdown which are then used to filter the job results.
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Select from 'react-select';
@@ -10,6 +17,12 @@ class SearchDropdown extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+    /**
+     * handles multiple filter selection.
+     * Calls parent whenever any change is detected
+     * to update the filters.
+     * @param {Array} selected 
+     */
     handleChange(selected) {
         const value = selected.map(item => item.value);
         const name = this.props.item.key;
