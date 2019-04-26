@@ -1,3 +1,11 @@
+/**
+ * Signup Component
+ * Consists of the Signup form, handles sign up for candidate and companies.
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {request, success, failure} from './signupActions';
@@ -22,6 +30,11 @@ class Signup extends Component {
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     }
 
+    /**
+     * Handles change of form inputs
+     * updates the input value in the state
+     * @param {event} e 
+     */
     handleChange(e) {
         const { name, value } = e.target;
         if ([name] == "username" && this.state.hasError) {
@@ -30,12 +43,22 @@ class Signup extends Component {
         this.setState({ [name]: value });
     }
 
+    /**
+     * Handles change of form checkboxes
+     * updates the checkbox value in the state
+     * @param {event} e 
+     */
     handleCheckboxChange(e) {
         const item = e.target.name;
         const isChecked = e.target.checked;
         this.setState({[item]: isChecked});
     }
 
+    /**
+     * Handles submit of login form
+     * calls the signup API to add the user.
+     * @param {event} e
+     */
     handleSubmit(e) {
         e.preventDefault();
 
@@ -46,6 +69,14 @@ class Signup extends Component {
         }
     }
 
+    /**
+     * Calls Signup API to create an account.
+     * redirects on successful signup to the user's login page
+     * Sets success/error state
+     * 
+     * @param {String} username 
+     * @param {String} password
+     */
     Signup (username, password, name, isCompany) {
         const flag = !isCompany;
         const requestOptions = {

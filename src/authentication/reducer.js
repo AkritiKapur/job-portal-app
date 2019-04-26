@@ -1,8 +1,18 @@
+/**
+ * Reducer for Login  
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
+
 import { authenticationConstants } from './actions';
 
 let user = JSON.parse(localStorage.getItem('user'));
 const initialState = user ? { loggedIn: true, user } : {};
 
+/**
+ * Reducer for Login  
+ */
 export default (state = initialState, action) => {
     switch (action.type) {
       case authenticationConstants.LOGIN_REQUEST:

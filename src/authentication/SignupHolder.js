@@ -1,3 +1,11 @@
+/**
+ * SignupHolder Component
+ * Consists of Tabs for Login or Signup
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Tabs from 'react-bootstrap/Tabs';

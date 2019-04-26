@@ -4,6 +4,14 @@ import {logoutAction, success, request, failure} from './authenticationActions';
 import { withRouter } from "react-router";
 import apiUrl from '../apiUtil/url';
 
+
+/**
+ * Login Component
+ * Consists of the login form and authetication
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
 class Login extends Component {
     constructor(props, context) {
         super(props, context);
@@ -21,12 +29,22 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    /**
+     * Handles change of form inputs
+     * updates the input value in the state
+     * @param {e} event
+     */
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({hasError: false});
         this.setState({ [name]: value });
     }
 
+    /**
+     * Handles submit of login form
+     * calls the login API to authenticate username and password
+     * @param {event} e
+     */
     handleSubmit(e) {
         e.preventDefault();
 
@@ -37,8 +55,15 @@ class Login extends Component {
         }
     }
 
+    /**
+     * Calls login API
+     * redirects on successful login to the user's home page
+     * Sets success/error state
+     * 
+     * @param {String} username 
+     * @param {String} password
+     */
     login(username, password) {
-        console.log({ username, password })
         const requestOptions = {
             method: 'GET',
             headers: { 'Content-Type': 'application/json',

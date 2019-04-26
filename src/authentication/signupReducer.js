@@ -1,3 +1,9 @@
+/**
+ * Reducer for Signup
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
 import { authenticationConstants } from './actions';
 
 const signup = (state = {}, action) => {
