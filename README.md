@@ -4,6 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This project is developed for the OOAD course (CSCI 5448-001) in CU Boulder
 
 Project Name: Job-Portal App
+
 Team Members: Akriti Kapur, Amith Gopal, Prashanth Thipparthi
 
 ### User Role Description
