@@ -25,6 +25,8 @@ class Dashboard extends Component {
         this.refresh = this.refresh.bind(this);
         this.fetchRoles = this.fetchRoles.bind(this);
         this.fetchJobs = this.fetchJobs.bind(this);
+        this.fetchFilteredJobs = this.fetchFilteredJobs.bind(this);
+        this.fetchSkills = this.fetchSkills.bind(this);
     }
     
     /**
@@ -40,6 +42,7 @@ class Dashboard extends Component {
         };
         this.fetchRoles(requestOptions);
         this.fetchJobs(requestOptions);
+        this.fetchSkills(requestOptions);
     }
 
     /**
@@ -61,6 +64,30 @@ class Dashboard extends Component {
                 const newItems = this.state.items.concat({key: "roles", data: roles});
                 this.setState({items: newItems});
                 this.setState({filters: {roles: []}});
+            });
+    }
+
+    /**
+     * Calls API to get all the Job Skills that are available.
+     * Sets the filter and all roles in the components state.
+     * This state is updated whenever a new filter is added.
+     * 
+     * @param {Object} requestOptions 
+     */
+    fetchSkills(requestOptions) {
+        const roleFilterAPI = `${apiUrl}/skills`;
+    
+        return fetch(roleFilterAPI, requestOptions)
+            .then(results => {
+                return results.text()
+            })
+            .then(text => JSON.parse(text))
+            .then(skills => {
+                const s = skills.map(skill => skill.skill);
+                console.log(s);
+                const newItems = this.state.items.concat({key: "skills", data: s});
+                this.setState({items: newItems});
+                this.setState({filters: {skills: []}});
             });
     }
 
@@ -102,6 +129,39 @@ class Dashboard extends Component {
     }
 
     /**
+     * Fetches filtered jobs once filter is applied.
+     * @param {*} requestOptions 
+     */
+    fetchFilteredJobs(requestOptions) {
+        const roles = this.state.filters.roles || [];
+        const skills = this.state.filters.skills || [];
+        const query = `?role=${roles.toString()}&skills=${skills.toString()}`;
+        const jobsAPI = `${apiUrl}/jobs${query}`;
+
+        return fetch(jobsAPI, requestOptions)
+            .then(results => {
+                return results.text()
+            })
+            .then(text => JSON.parse(text))
+            .then(jobs => {
+                const j =  jobs || [];
+                const jobTemplate = j.map(job => {
+                    return {
+                        "id": job.jobId,
+                        "title": job.jobRole,
+                        "description": job.jobDescription,
+                        "company": job.companyObj.name,
+                        "companyId": job.companyObj.id,
+                        "skills": job.jobSkills
+                    }
+                })
+
+                this.setState({jobs: jobTemplate});
+            });
+
+    }
+
+    /**
      * Adds all the filter values selected
      * for the filter to the component state
      * 
@@ -116,12 +176,13 @@ class Dashboard extends Component {
      * Fetches jobs and updates the Dashboard
      */
     refresh() {
+        console.log("here", this.state);
         const requestOptions = {
             method: 'GET',
             headers: { 'Content-Type': 'application/json',
                        'Accept': 'application/json' },
         };
-        this.fetchJobs(requestOptions);
+        this.fetchFilteredJobs(requestOptions);
     }
 
     render() {
