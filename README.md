@@ -1,14 +1,16 @@
+# Job Portal
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Project Details
-This project is developed for the OOAD course (CSCI 5448-001) in CU Boulder
-
 Project Name: Job-Portal App
 
 Team Members: Akriti Kapur, Amith Gopal, Prashanth Thipparthi
 
-### User Role Description
-We have two kind of users,
+### About the Project
+This project is developed for the OOAD course (CSCI 5448-001) in CU Boulder. Job Portal App is the front-end of our application. This project has user interactions supporting applying, adding , deleting jobs and applications. 
+
+It conists of two kind of users,
 1. Candidate: A candidate can apply to jobs, filter jobs, apply to jobs and withdraw from applications etc
 2. Company: A company account can create jobs, view all the applications belonging to a job, delete a job etc.
 
