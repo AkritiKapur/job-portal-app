@@ -1,3 +1,11 @@
+/**
+ * Job Card Component for the Company
+ * Displays all the information related to a job like skills, description, role etc.
+ * It handles all the interactions such Deleting a job.
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Dashboard.css';
@@ -47,11 +55,20 @@ class JobCard extends Component {
         )
     }
 
+    /**
+     * Deletes a job.
+     */
     withdrawJob = (event) => {
         // Load component which asks to reconsider
         this._withdraw(this.props.job.id);
     }
 
+    /**
+     * Calls API to delete a job.
+     * If the application is deleted successfully
+     * then the withdraw status is set as true
+     * in the components state.
+     */
     _withdraw = (id) => {
         const requestOptions = {
             method: 'GET',

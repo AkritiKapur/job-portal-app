@@ -1,3 +1,10 @@
+/**
+ * Job Modal Component that holds
+ * the create job form
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
@@ -20,14 +27,30 @@ class JobPopup extends Component {
       };
     }
   
+    /**
+     * Handles Closing of modal
+     * show is set as false in the state
+     */
     handleClose() {
       this.setState({ show: false });
     }
   
+    /**
+     * Handles Showing of modal
+     * show is set as true in the state
+     */
     handleShow() {
       this.setState({ show: true });
     }
 
+    /**
+     *  Calls API to create a job
+     * @param {String} role: Job Role Applying to
+     * @param {String} description: Job description
+     * @param {String} location: Job location
+     * @param {Array} skills: Job skills
+     * @param {Integer} company_id: Company logged in
+     */
     addJob(role, description, location, skills, company_id) {
         const requestOptions = {
             method: 'POST',

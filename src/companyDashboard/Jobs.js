@@ -1,3 +1,10 @@
+/**
+ * Job card Holder component
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import JobCard from './JobCard';

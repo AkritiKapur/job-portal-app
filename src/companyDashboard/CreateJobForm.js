@@ -1,3 +1,11 @@
+/**
+ * Create Job Form Component for Company
+ * Contains all the fields needed to create a new job.
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import TagsInput from 'react-tagsinput';
@@ -21,16 +29,31 @@ class CreateJobForm extends Component {
       this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    /**
+     * Handles change of form inputs
+     * updates the input value in the state
+     * @param {e} event
+     */
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({hasError: false});
         this.setState({ [name]: value });
     }
 
+    /**
+     * Handles Skill Tags
+     * updates the state whenever a new skill is added
+     * @param {Array} tags
+     */
     handleTags(tags) {
         this.setState({skills: tags});
     }
 
+    /**
+     * Handles submit of job creation form
+     * Creates a job with the information in the form.
+     * @param {event} e
+     */
     handleSubmit(e) {
         e.preventDefault();
         const user = JSON.parse(localStorage.getItem('user'));

@@ -3,6 +3,7 @@
  *
  * @version 1.0.1
  * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ * @borrows [jasonwatmore](http://jasonwatmore.com/post/2017/09/16/react-redux-user-registration-and-login-tutorial-example#login-page-folder)
  */
 
 import { authenticationConstants } from './actions';

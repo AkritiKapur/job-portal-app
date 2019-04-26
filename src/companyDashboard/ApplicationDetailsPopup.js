@@ -1,3 +1,12 @@
+/**
+ * Application Details Component for Job
+ * Modal component that gives all the information related to applications belonging to a jobcard
+ * such as the Email address of the candidate, the status of the application.
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
@@ -18,10 +27,18 @@ class ApplicationDetailsPopup extends Component {
       };
     }
   
+    /**
+     * Handles closing the modal.
+     * Sets show in the state as false
+     */
     handleClose() {
       this.setState({ show: false });
     }
   
+    /**
+     * Handles Opening the modal
+     * Sets show in the state as true
+     */
     handleShow() {
       this.setState({ show: true });
     }

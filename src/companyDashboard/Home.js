@@ -1,3 +1,10 @@
+/**
+ * Home Component for Company 
+ * Consists of the company dashboard.
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Dashboard from './Dashboard';

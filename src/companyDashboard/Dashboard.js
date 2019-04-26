@@ -1,3 +1,11 @@
+/**
+ * Dashboard Component consists of jobs
+ * belonging to the company
+ * Actions can be performed on these jobs.
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import apiUrl from '../apiUtil/url';
@@ -15,6 +23,11 @@ class Dashboard extends Component {
         this.refresh = this.refresh.bind(this);
     }
     
+    /**
+     * Executes only when the component is munted
+     * Calls the fetch job function to fetch
+     * all jobs belonging to the company.
+     */
     componentDidMount() {
         const requestOptions = {
             method: 'GET',
@@ -24,6 +37,10 @@ class Dashboard extends Component {
         this.fetchJobs(requestOptions);
     }
 
+    /**
+     * Calls fetch jobs on refresh
+     * This is called when adding a new job!
+     */
     refresh() {
         const requestOptions = {
             method: 'GET',
@@ -33,6 +50,13 @@ class Dashboard extends Component {
         this.fetchJobs(requestOptions);
     }
 
+    /**
+     * Calls API to get all jobs belonging
+     * to the company logged in.
+     * On success, updates the job to the
+     * component state.
+     * @param {Object} requestOptions 
+     */
     fetchJobs(requestOptions) {
 
         const user = JSON.parse(localStorage.getItem('user'));
