@@ -1,3 +1,12 @@
+/**
+ * Job Card Component for the Candidate
+ * Displays all the information related to a job like skills, description, role etc.
+ * It handles all the interactions such as apply and withdraw from a job.
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Dashboard.css';
@@ -47,6 +56,9 @@ class JobCard extends Component {
         )
     }
 
+    /**
+     * Calls API to apply for a particular Job.
+     */
     applyForJob = (event) => {
         const user = JSON.parse(localStorage.getItem('user'));
         const candidate_id = user.id;
@@ -55,6 +67,16 @@ class JobCard extends Component {
         this._apply(job_id, candidate_id, status);
     }
 
+    /**
+     * Calls API to apply for a particular Job.
+     * If the job has been successfully applied to
+     * then sets the status of application as true in 
+     * the component state
+     * 
+     * @param {Integer} job_id
+     * @param {Integer} candidate_id
+     * @param {String} status
+     */
     _apply(job_id, candidate_id, status){
         const requestOptions = {
             method: 'POST',
@@ -73,10 +95,19 @@ class JobCard extends Component {
             });
     }
     
+    /**
+     * Withdraws a job application for the user
+     */
     withdrawFromApplication = (event) => {
         this._withdraw(this.props.appId);
     }
 
+    /**
+     * Calls API to withdraw from an application
+     * If the application is withdrawn successfully
+     * then the withdraw status is set as true
+     * in the components state.
+     */
     _withdraw = (id) => {
         const requestOptions = {
             method: 'GET',

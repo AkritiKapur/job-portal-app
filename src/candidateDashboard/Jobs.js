@@ -1,3 +1,11 @@
+/**
+ * Job Component for the Candidate
+ * Consists of all the Job cards available to the candidate.
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import JobCard from './JobCard';

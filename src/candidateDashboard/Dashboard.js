@@ -1,3 +1,11 @@
+/**
+ * Dashboard Component consists of jobs that the
+ * candidate hasn't applied to.
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Jobs from './Jobs'
@@ -19,6 +27,11 @@ class Dashboard extends Component {
         this.fetchJobs = this.fetchJobs.bind(this);
     }
     
+    /**
+     * Executes only when the components mounts
+     * fetches the roles for the job filter
+     * fetches the jobs the candidate hasn't applied to.
+     */
     componentDidMount() {
         const requestOptions = {
             method: 'GET',
@@ -29,7 +42,13 @@ class Dashboard extends Component {
         this.fetchJobs(requestOptions);
     }
 
-
+    /**
+     * Calls API to get all the Job Roles that are available.
+     * Sets the filter and all roles in the components state.
+     * This state is updated whenever a new filter is added.
+     * 
+     * @param {Object} requestOptions 
+     */
     fetchRoles(requestOptions) {
         const roleFilterAPI = `${apiUrl}/getRoles`;
     
@@ -45,6 +64,12 @@ class Dashboard extends Component {
             });
     }
 
+    /**
+     * Calls API to fetch all the jobs the candidate
+     * hasn't applied to.
+     * Adds the jobs to the components state
+     * @param {Object} requestOptions 
+     */
     fetchJobs(requestOptions) {
         const user = JSON.parse(localStorage.getItem('user'));
         const query = `?id=${user.id}`;
@@ -76,10 +101,20 @@ class Dashboard extends Component {
 
     }
 
+    /**
+     * Adds all the filter values selected
+     * for the filter to the component state
+     * 
+     * @param {String} filterName 
+     * @param {Array} values 
+     */
     handleFilter(filterName, values) {
         this.setState({filters: {[filterName]: values}});
     }
 
+    /**
+     * Fetches jobs and updates the Dashboard
+     */
     refresh() {
         const requestOptions = {
             method: 'GET',

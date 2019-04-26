@@ -1,3 +1,11 @@
+/**
+ * Application Dashboard Component consists of applications that the
+ * candidate has applied to. 
+ *
+ * @version 1.0.1
+ * @author [Akriti Kapur](https://github.com/AkritiKapur)
+ */
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Jobs from './Jobs'
@@ -15,10 +23,17 @@ class ApplicationDashboard extends Component {
         this.fetchJobs = this.fetchJobs.bind(this);
     }
     
+    /**
+     * Executes when the component mounts.
+     * Fetches applied jobs.
+     */
     componentDidMount() {
         this.fetchJobs();
     }
 
+    /**
+     * API to fetch applied jobs.
+     */
     fetchJobs() {
         const requestOptions = {
             method: 'GET',
@@ -53,6 +68,9 @@ class ApplicationDashboard extends Component {
             });
     }
 
+    /**
+     * Refreshes the applications by calling the API
+     */
     refresh() {
         this.fetchJobs();
     }
