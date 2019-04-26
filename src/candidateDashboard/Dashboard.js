@@ -66,6 +66,7 @@ class Dashboard extends Component {
                             "description": job.jobDescription,
                             "company": job.companyObj.name,
                             "companyId": job.companyObj.id,
+                            "skills": job.jobSkills
                         }
                     })
 

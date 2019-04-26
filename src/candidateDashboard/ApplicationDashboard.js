@@ -45,6 +45,7 @@ class ApplicationDashboard extends Component {
                         "company": app.job.companyObj.name,
                         "companyId": app.job.companyObj.id,
                         "appId": app.appId,
+                        "skills": app.job.jobSkills
                     }
                 });
 
