@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import apiUrl from '../apiUtil/url';
 import Jobs from './Jobs';
+import JobPopup from './JobPopup';
 
 class Dashboard extends Component {
     constructor(props, context) {
@@ -11,9 +12,19 @@ class Dashboard extends Component {
         };
 
         this.fetchJobs = this.fetchJobs.bind(this);
+        this.refresh = this.refresh.bind(this);
     }
     
     componentDidMount() {
+        const requestOptions = {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',
+                       'Accept': 'application/json' },
+        };
+        this.fetchJobs(requestOptions);
+    }
+
+    refresh() {
         const requestOptions = {
             method: 'GET',
             headers: { 'Content-Type': 'application/json',
@@ -45,15 +56,13 @@ class Dashboard extends Component {
                         "skills": job.skills,
                         "apps": job.apps && job.apps.map(app => {
                             return {
-                                "candidate": app.candidate.name,
+                                "candidate": app.candidate.user.username,
                                 "skills": app.candidate.skills,
                                 "status": app.status
                             }
                         }),
                     }
                 });
-
-                console.log(jobTemplate);
                 this.setState({jobs: jobTemplate});
             });
 
@@ -64,6 +73,8 @@ class Dashboard extends Component {
 
         return (
             <div className="company-dashboard">
+                <JobPopup refreshJobs={this.refresh}/>
+                <hr />
                 <Jobs jobs={jobs} />
             </div>
         );
